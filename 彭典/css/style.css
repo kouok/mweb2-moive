@@ -1,0 +1,187 @@
+/* solid */
+.slideBox {
+	position: relative;
+	overflow: hidden;
+	margin: 0 auto;
+	max-width: 7.5rem;
+}
+
+.slideBox .hd {
+	position: absolute;
+	height: 0.56rem;
+	line-height: 0.56rem;
+	bottom: 0;
+	left: 40%;
+	z-index: 1;
+}
+
+.slideBox .hd li {
+	float: left;
+	display: inline-block;
+	width: 0.16rem;
+	height: 0.16rem;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 0.1rem;
+	border-radius: 50%;
+	background: #fff;
+	text-indent: -9999px;
+	overflow: hidden;
+	margin: 0 0.08rem;
+	opacity: 0.7;
+}
+
+.slideBox .hd li.on {
+	opacity: 1;
+}
+
+.slideBox .bd {
+	position: relative;
+	z-index: 0;
+}
+
+.slideBox .bd li {
+	position: relative;
+	text-align: center;
+	float: left;
+}
+
+.slideBox .bd li img {
+	vertical-align: top;
+	width: 7.5rem;
+}
+
+.slideBox .bd li a {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* 去掉链接触摸高亮 */
+.slideBox .bd li .tit {
+	display: block;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	text-indent: 0.2rem;
+	height: 0.56rem;
+	line-height: 0.56rem;
+	color: #fff;
+	text-align: left;
+}
+
+.space {
+	height: 0.16rem;
+	background-color: #E6E6E6;
+}
+
+/* 热门影音 */
+.hot .col-1 img {
+	width: 0.3rem;
+}
+
+.hot .col-11 h4 {
+	font-weight: 800;
+	font-size: 0.4rem;
+}
+
+.hotmu {
+	width: 7.5rem;
+	overflow: scroll;
+	display: flex;
+}
+
+.hotmu>div {
+	flex-wrap: nowrap;
+	padding-left: 0.2rem;
+	float: left;
+	position: relative;
+}
+
+.hotmu>div:last-child {
+	padding-right: 0.2rem;
+}
+
+.hotmu>div h6 {
+	font-size: 0.36rem;
+	font-weight: 600;
+	width: 2.6rem;
+	margin-top: 0.1rem;
+}
+.hotmu>div span{
+	position: absolute;
+	bottom: -0.1rem;
+	right: 0.1rem;
+	font-size: 0.3rem;
+	font-weight: 400;
+	color: #666666;
+	margin-left: 0.2rem;
+}
+
+/* 热门预告 */
+.mv{
+	margin: -0.5rem 0 -0.4rem;
+}
+.mv video{
+	width: 4.6rem;
+	height: 3.1rem;
+}
+/* 猜你喜欢 */
+.lv>a>div{
+	margin-bottom: 0.2rem;
+}
+.lv>a>div>div:first-child>img{
+	width: 100%;
+	border-radius: 0.1rem;
+}
+.lv>a>div>div:nth-child(2)>h4{
+	font-weight: 600;
+	font-size: 0.4rem;
+	color: #000000;
+	/* margin-bottom: -0.54rem; */
+}
+.lv>a>div>div:nth-child(2)>img{
+	/* padding-bottom: -0.4rem; */
+}
+.lv>a>div>div:nth-child(2)>p{
+	/* margin-top: -0.4rem; */
+	font-weight: 400;
+	font-size: 0.3rem;
+}
+.lv>a>div>div:last-child{
+	text-align: center;
+	border-left: 0.07rem dashed #C0C0C0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+.lv>a>div>div:last-child img{
+	width: 0.7rem;
+}
+.lv>a>div>div:last-child h5{
+	font-size: 0.4rem;
+	color: #feb741;
+}
+/* 底部导航 */
+.bot{
+	position: fixed;
+	bottom: 0;
+	background-color: white;
+	border-top: 0.02rem solid #D3D3D3; 
+	width: 7.5rem;
+	display: flex;
+	justify-content: space-between;
+}
+.bot>div{
+	text-align: center;
+	color: #c0c0c0;
+}
+.bot .active{
+	color: #545454;
+}
+.bot>div>div>img{
+	width: 0.6rem;
+	/* margin-top: -0.9rem; */
+}
+.bot>div>p{
+	/* margin-top: -0.8rem; */
+	font-size: 0.24rem;
+}

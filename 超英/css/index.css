@@ -1,0 +1,188 @@
+	#index{
+		width: 100%;
+		background-color: #F7F7F7;
+	}
+/* banner */
+.focus{ width:100%; height:4.4rem;  margin:0 auto; position:relative; overflow:hidden;}
+.focus .hd{ width:100%; height:0.05rem;  position:absolute; z-index:1; bottom:0.3rem; text-align:center;  }
+.focus .hd ul{ overflow:hidden; display:-moz-box; display:-webkit-box; display:box; height:0.15rem;display: flex;justify-content: center; }
+.focus .hd ul li{ width: 0.15rem;height: 0.15rem; margin: 0 0.06rem; background-color: white;border-radius: 50%;}
+.focus .hd ul .on{ background:#FE6C9C;  }
+.focus .bd{ position:relative; z-index:0; }
+.focus .bd li img{ width:100%; }
+.focus .bd li a{ -webkit-tap-highlight-color:rgba(0, 0, 0, 0); /* 取消链接高亮 */ }
+	
+/* 热门超英 */
+.rmcy{
+	width: 100%;
+	margin-top: 0.2rem;
+	background-color: white;
+}
+.rm_top{
+	padding: 0.2rem;
+}
+.rm_top>span{
+	margin-left: 0.3rem;
+	font-size: 0.5rem;
+	font-weight: bold;
+}
+.rm_top>img{
+	width: 0.4rem;
+}
+.rmcy .rm_bot{
+	width: 100%;
+}
+.rmcy .rm_bot ul{
+	display: flex;
+	overflow: auto;
+}
+.rmcy .rm_bot li{
+	margin-left: 0.2rem;
+	width: 2rem;
+	height: 3.6rem;
+	text-overflow: ellipsis;
+}
+.rmcy .rm_bot li img{
+	width: 2rem;
+	height: 2.7rem;
+}
+.rmcy .rm_bot li h1{
+	width: 100%;
+	white-space: nowrap; 
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.rmcy .rm_bot li p>span:first-child>img{
+	width: 0.2rem;
+	height: 0.2rem;
+}
+.rmcy .rm_bot li p>span:last-child{
+	position: relative;
+	bottom: 0.02rem;
+	margin-left: 0.1rem;
+	font-size: 0.18rem;
+}
+
+/* 热门预告 */
+.rmyg{
+	width: 100%;
+	margin-top: 0.2rem;
+	background-color: white;
+	padding-bottom: 0.2rem;
+}
+.rmyg .rm_yg{
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	padding: 0 0.2rem;
+}
+.rmyg .rm_yg li{
+	position: relative;
+	width: 3.5rem;
+	height: 2.2rem;
+	background-color: rgba(0,0,0,0.9);
+}
+.rmyg .rm_yg li video{
+	width: 3.5rem;
+	height: 2.2rem;
+}
+.rmyg .rm_yg li div{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	background-color: rgba(0,0,0,0.7);
+	text-align: center;
+}
+.rmyg .rm_yg li div img{
+	margin-top: 0.7rem;
+	width: 0.5rem;
+}
+.rmyg .rm_yg li div p{
+	margin-top: 0.1rem;
+	color: white;
+	font-size: 0.24rem;
+}
+
+/* 猜你喜欢 */
+.cnxh{
+	width: 100%;
+	margin-top: 0.2rem;
+	background-color: white;
+	padding-bottom: 0.2rem;
+}
+.cnxh .cn_xh{
+	width: 100%;
+	padding: 0 0.2rem;
+}
+.cnxh .cn_xh li{
+	display: flex;
+	align-items: center;
+	margin-bottom: 0.5rem;
+}
+.cnxh .cn_xh li>div:first-child{
+	width: 5.7rem;
+	padding-right: 0.2rem;
+	border-right: 0.05rem dashed lightgray;
+	display: flex;
+}
+.cnxh .cn_xh li>div:first-child>img{
+	width: 1.8rem;
+	height: 2.4rem;
+}
+.cnxh .cn_xh li>div:first-child>div{
+	margin-left: 0.2rem;
+}
+.cnxh .cn_xh li>div:first-child>div>h1{
+	width: 3.5rem;
+	font-size: 0.38rem;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.cnxh .cn_xh li>div:first-child .ipf{
+	height: 0.34rem;
+}
+.cnxh .cn_xh li>div:first-child .ipf>img{
+	width: 0.2rem;
+	height: 0.2rem;
+}
+.cnxh .cn_xh li>div:first-child p{
+	font-size: 0.28rem;
+	color: gray;
+	line-height: 0.38rem;
+}
+.cnxh .cn_xh li>div:last-child {
+	width: 2rem;
+	text-align: center;
+}
+.cnxh .cn_xh li>div:last-child img{
+	width: 0.5rem;
+}
+.cnxh .cn_xh li>div:last-child p{
+	color: #fdab2a;
+	font-size: 0.34rem;
+	width: 100%;
+	text-align: center;
+}
+
+
+/* 底部导航 */
+.dbdh{
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	background-color:white;
+	margin-top:0.2rem;
+	padding:0.16rem 0;
+}
+.dbdh>li{
+	flex: 1;
+	text-align: center;
+}
+.dbdh>li>img{
+	width: 0.5rem;
+}
+.dbdh>li>span{
+	font-size:0.24rem;
+}

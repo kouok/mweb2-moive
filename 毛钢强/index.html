@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <!--viewport一定要加 user-scalable 值可以是yes|no或1|0 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0,maximum-scale=1.0, user-scalable=0" />
+    <!-- 禁止将数字转为号码 -->
+    <meta name="format-detection" content="telephone=no" />
+    <!-- 控制顶栏状态栏显示样式，可以为透明 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <!-- 添加一个网站图标，这样当你将网站添加到桌面图标时，会显示出来 -->
+    <link rel="apple-touch-icon-precomposed" href="mobile_logo.png?v1" />
+    <title>超英预告</title>
+    <link rel="stylesheet" href="css/reset.css"/>
+	<link rel="stylesheet" type="text/css" href="css/index.css"/>
+	<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/TouchSlide.1.1.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/vue.2.6.11.js"></script>
+    <!-- 将px转rem的公式代码 -->
+    <script>
+        var width=window.innerWidth;
+        //6.4是根据设计图的大小除以100，需要按照你的实际设计图换算
+        var bili=width/7.5;
+        document.documentElement.style.fontSize=bili+"px";
+
+        // 此时  100px=1rem
+        // 将所有在设计图量出的尺寸都除以100即可转为对应的rem
+    </script>
+<body>
+  <!-- 网页内容 -->
+  <!-- 記住写样式时將设计图量出的px除以100得到对应的rem 
+  比如：10px==> 0.1rem
+  -->
+<div id="aa">
+<div id="index">
+	<banner :list="banner"></banner>
+	
+	<!-- 热门超英 -->
+	<chaoyi :list="chaoyi"></chaoyi>
+	
+	<!-- 热门预告 -->
+	<remin></remin>
+	<cainxh :list="cainxh"></cainxh>
+	<!-- 猜你喜欢 -->
+		<!-- 底部导航 -->
+		<ul class="dbdh">
+			<li><img src="images/ia_100000044.png" ><br><span>首页</span></li>
+			<li><img src="images/ia_100000045.png" ><br><span>搜索</span></li>
+			<li><img src="images/ia_100000046.png" ><br><span>我的</span></li>
+		</ul>
+</div>
+	<button @click="fun">点击</button>
+</div>
+	<!-- 热门超英 -->
+	>
+	
+	<!-- 热门预告 -->
+
+		
+	</script>
+	
+	<!-- 猜你喜欢 -->
+	<script>
+		Vue.component("cainxh",{
+			props:["list"],
+			template:`
+			<div class="cnxh">
+				<div class="rm_top">
+				<img src="images/ia_100000054.png"><span>猜你喜欢</span>
+				</div>
+				<div class="rm_bot">
+					<ul class="cn_xh">
+						<li v-for="iu in list">
+							<div class="">
+								<img :src="iu.cover" >
+								<div>
+									<h1>{{iu.name}}</h1>
+									<p class="pi"><img src="images/ia_100000092.png"></p>
+									<p>{{iu.basicInfo}}</p>
+									<p>{{iu.releaseDate}}</p>
+								</div>
+							</div>
+							<div class="">
+								<img src="images/ia_100000094.png" >
+								<p>赞一下</p>
+							</div>
+						</li>
+					</ul>
+				</div>
+			
+			</div>
+			
+			`
+		})
+		Vue.component("remin",{
+			template:`
+			<div class="rmyg">
+				<div class="rm_top">
+					<img src="images/ia_100000054.png" ><span>热门预告</span>
+				</div>
+		
+				<div class="rm_bot">
+					<ul class="rm_yg">
+						<li>
+							<video controls id="vm" src="http://122.152.205.72:88/superhero/MARVEL/SpiderManHomecoming/trailer.mp4" poster="http://122.152.205.72:88/superhero/MARVEL/SpiderManHomecoming/poster.png"></video>
+							<div><img id="bf" src="images/播放按钮.png" ><p>asdasdasd</p></div>
+						</li>
+						<li>
+							<video controls id="vm" src="http://122.152.205.72:88/superhero/MARVEL/SpiderManHomecoming/trailer.mp4" poster="http://122.152.205.72:88/superhero/MARVEL/SpiderManHomecoming/poster.png"></video>
+							<div><img id="bf" src="images/播放按钮.png" ><p>asdasdasd</p></div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			`
+		})
+		Vue.component("chaoyi",{
+		
+			props:["list","lian"],
+			template:`
+			<div class="rmcy">
+				<div class="rm_top">
+					<img src="images/ia_100000053.png" ><span>热门超英</span>
+				</div>				
+				<div class="rm_bot">
+					<ul class="rm_cy">
+						<li v-for="imt in list">
+							<img :src="imt.cover" >
+							<h1>{{imt.name}}</h1>
+							<p><span><img src="images/ia_100000092.png"></span><span>{{imt.score}}</span></p>
+						</li>
+					</ul>
+				</div>
+			</div>
+			`,
+			
+		})
+		Vue.component("banner",{
+			data(){
+				return {
+                      
+                 }
+			},
+			props: ["list"],
+			template:`
+			<div id="focus" class="focus">
+				<div class="hd">
+					<ul></ul>
+				</div>
+				<div class="bd">
+					<ul id="ban">
+							<li v-for="itm,ia in list"></span><img :src="itm.image"></span></li>
+					</ul>
+				</div>
+			</div>
+			`,
+			updated () {
+				TouchSlide({ 
+					slideCell:"#focus",
+					titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+					mainCell:".bd ul", 
+					effect:"left", 
+					autoPlay:true,//自动播放
+					autoPage:true, //自动分页
+					switchLoad:"_src" //切换加载，真实图片路径为"_src" 
+				});
+			}
+				
+			
+		})
+		var vm= new Vue({
+			el:"#aa",
+			data:{
+				banner:{},
+				chaoyi:{},
+				yugao:{},
+				cainxh:{}
+			},
+			methods: {
+				fun(){
+					console.log(this.banner);
+					// console.log(this.chaoyi);
+					// console.log(this.yugao);
+					// console.log(this.cainxh);
+				}	
+			},
+			created(){
+				let othis=this;
+				// banner
+				$.ajax({
+					type:"post",
+					url:"https://www.imovietrailer.com/superhero/index/carousel/list?qq=947876",
+					success:function(res){
+						othis.banner=res.data
+					}
+				})
+				//超英
+				$.ajax({
+					type:"post",
+					url:"https://www.imovietrailer.com/superhero/index/movie/hot?type=superhero&&qq=947876",
+					success:function(res){
+						othis.chaoyi=res.data
+					}
+				})
+				//预告
+				$.ajax({
+					type:"post",
+					url:"https://www.imovietrailer.com/superhero/index/movie/hot?type=trailer&&qq=947876",
+					success:function(res){
+						othis.yugao=res.data
+					}
+				})
+				//预告
+				$.ajax({
+					type:"post",
+					url:"https://www.imovietrailer.com/superhero/index/guessULike?qq=947876",
+					success:function(res){
+						othis.cainxh=res.data
+					}
+				})
+			}
+
+		})
+	</script>
+</body>
+</html>

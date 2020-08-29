@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/vue.2.6.11.js"></script>
+    <script src="js/zepto.min.js"></script>
+    <script src="js/TouchSlide.1.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <script>
+        var width=window.innerWidth;
+        //6.4是根据设计图的大小除以100，需要按照你的实际设计图换算
+        var bili=width/7.5;
+        document.documentElement.style.fontSize=bili+"px";
+
+        // 此时  100px=1rem
+        // 将所有在设计图量出的尺寸都除以100即可转为对应的rem
+    </script>
+
+</head>
+<body>
+    <div id="app">
+        <my-banner :info="list"></my-banner>
+
+        <my-hot :info="list"> </my-hot>
+
+        <my-radio :info="list"></my-radio>
+
+        <my-like :info="list"></my-like>
+
+        <my-foot :info="list"></my-foot>
+    </div>
+
+    <script>
+
+
+    //banner组件
+        Vue.component("my-banner",{
+                    methods:
+                    {
+                        
+                    },
+                    computed:
+                    {
+
+                    },
+                    watch:
+                    {
+
+                    },
+                    props:['info'],
+                    template:`
+                        <div id="slideBox" class="slideBox" >
+                              <div class="bd">
+                                  <ul>
+                                         <li style="display:table-cell; vertical-align: top;" v-for="item,i in info">
+                                              <a class="pic" href="#"><img :src="item.image" /></a>
+                                         </li>
+                                  </ul>
+                             </div>
+
+                              <div class="hd">
+                                <ul>
+                                    <li></li>
+                                </ul>
+                           </div>
+                                
+                         </div>  
+                                `
+           });
+
+//热门超英组件
+    Vue.component("my-hot",{
+              methods:
+                    {
+                        
+                    },
+                    computed:
+                    {
+
+                    },
+                    watch:
+                    {
+
+                    },
+                    props:['info'],
+                    template:`
+                        <div class="hotMain">
+                            <div class="hot1">
+                                <img src="images/ia_100000053.png" style="width:0.4rem">
+                                <h1>热门超英</h1>
+                            </div>
+
+                           <div id="hot">
+                                <div class="card1" v-for="item,i in info">
+                                        <img  :src="item.cover" class="img1">
+                                         <h4 class="cutFont"">{{item.name}}</h4>
+
+                                         <img src="images/ia_100000092.png" style="width:0.2rem">
+                                        <img src="images/ia_100000092.png" style="width:0.2rem">
+                                        <img src="images/ia_100000092.png" style="width:0.2rem">
+                                        <img src="images/ia_100000092.png" style="width:0.2rem">
+                                        <img src="images/ia_100000093.png" style="width:0.2rem">
+                                        <span>&emsp;</span><span>{{item.score}}</span>
+                            </div>
+                           </div>
+
+                        </div>
+
+                                `
+    });
+
+//热门预告
+        Vue.component("my-radio",{
+                   methods:
+                    {
+                        
+                    },
+                    computed:
+                    {
+
+                    },
+                    watch:
+                    {
+
+                    },
+                    props:['info'],
+                    template:`
+                        <div class="hotYgao">
+                            <div class="hot1">
+                                <img src="images/ia_100000054.png" style="width:0.4rem">
+                                <h1>热门预告</h1>
+                           </div>
+
+                            <div id="moive">
+                                <div class="m1" v-for="item,i in info">
+                                    <video controls :src="item.trailer" :poster="item.poster" loop="loop">
+                                    </video>    
+                            </div>
+                            </div>  
+                           </div>
+                            `
+
+        });
+
+// <!--猜你喜欢 -->
+            Vue.component("my-like",{
+             methods:
+                    {
+                        
+                    },
+                    computed:
+                    {
+
+                    },
+                    watch:
+                    {
+
+                    },
+                    props:['info'],
+                    template:`
+                          <div class="like">
+                                 <div class="hot1">
+                                    <img src="images/ia_100000059.png" style="width:0.4rem">
+                                    <h1>猜你喜欢</h1>
+                                 </div>
+
+                                <div class="likeMain">
+                                    <div class="likeMain1"  v-for="item,i in info">
+                                                   <div><img :src="item.cover" style="width:2rem"></div>
+                                                    <div style="width:2.6rem;">
+                                                        <h2>{{item.name}}</h2>
+                                                        <img src="images/ia_100000092.png" style="width:0.2rem">
+                                                        <img src="images/ia_100000092.png" style="width:0.2rem">
+                                                        <img src="images/ia_100000092.png" style="width:0.2rem">
+                                                        <img src="images/ia_100000092.png" style="width:0.2rem">
+                                                        <img src="images/ia_100000093.png" style="width:0.2rem">
+                                                        <p>{{item.basicInfo}}</p>
+                                                        <p>{{item.releaseDate}}</p>
+                                                        
+                                                    </div>
+
+                                                    <div class="hr1"></div>
+
+                                                    <div>
+                                                         <img src="images/ia_100000094.png" style="width:0.4rem">
+                                                        <p>赞一下</p>
+                                                    </div>
+                                                             </div>
+                                       </div>
+
+                                    </div>
+                                        
+                            `
+            });
+
+            Vue.component("my-foot",{
+                      methods:
+                    {
+                        
+                    },
+                    computed:
+                    {
+
+                    },
+                    watch:
+                    {
+
+                    },
+                    props:['info'],
+                    template:`
+
+                        <div class="foot">
+                                    <div>
+                                        <img src="images/ia_100000044.png">
+                                        <p>首页</p>
+                                    </div>
+
+                                     <div>
+                                        <img src="images/ia_100000045.png">
+                                        <p>搜索</p>
+                                    </div>
+
+                                     <div>
+                                        <img src="images/ia_100000046.png">
+                                        <p>我的</p>
+                                    </div>
+                            </div>
+                            `
+            });
+
+
+// 通过ajax获取数据
+        var vm=new Vue({
+            el:"#app",
+            data:{
+                list:{}
+            },
+            methods:{
+                
+            },
+            computed:{
+                
+            },
+            watch:{
+
+            },
+            // 声明周期函数，在创建实例时会自动执行
+            created(){
+                var that = this;
+                // 在这里嵌入ajax代码，通过ajax将数据读取出来，并且放到data中即可
+                //如果使用js的ajax，则可以不导入jquery
+                //banner
+                $.ajax({
+                    type:"post",
+                    url:"https://www.imovietrailer.com/superhero/index/carousel/list?qq=947876",
+                    success:function(res){
+
+                        // console.log(res)
+                        // console.log(this)
+                        // 找到vue的data的list，并且将数据赋值给给它
+                         $.each(res.data,function(i,item)
+                            {
+                                
+                                //console.log(item.image);
+                            })
+                             that.list=res.data;
+                    }
+                });
+
+                //热门超英
+                   $.ajax({
+                    type:"post",
+                    url:"https://www.imovietrailer.com/superhero/index/movie/hot?type=superhero&&qq=947876",
+                    success:function(res){
+
+                        // console.log(res)
+                        // console.log(this)
+                        // 找到vue的data的list，并且将数据赋值给给它
+                         $.each(res.data,function(i,item)
+                            {
+                                 //console.log(item.name);
+                            })
+                        that.list=res.data;
+                    }
+                });
+
+            //热门预告
+                   $.ajax({
+                    type:"post",
+                    url:"https://www.imovietrailer.com/superhero/index/movie/hot?type=trailer&&qq=947876",
+                    success:function(res){
+
+                        // console.log(res)
+                        // console.log(this)
+                        // 找到vue的data的list，并且将数据赋值给给它
+                         $.each(res.data,function(i,item)
+                            {
+                                 //console.log(item.trailer);
+                            })
+                         that.list=res.data;
+                    }
+                });
+//
+                $.ajax({
+                    type:"post",
+                    url:"https://www.imovietrailer.com/superhero/index/guessULike?qq=947876",
+                    success:function(res){
+
+                        // console.log(res)
+                        // console.log(this)
+                        // 找到vue的data的list，并且将数据赋值给给它
+                         $.each(res.data,function(i,item)
+                            {
+                                 console.log(item.name);
+                            })
+                        that.list=res.data;
+                    }
+                });
+
+            },
+            updated()
+            {
+                // 调用banner图轮播的js
+              TouchSlide({ 
+            slideCell:"#slideBox",
+            titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+            mainCell:".bd ul", 
+            effect:"leftLoop", 
+            autoPage:true,//自动分页
+            autoPlay:true //自动播放
+              });
+            }
+        });
+
+    </script>
+</body>
+</html>

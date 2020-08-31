@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>视频播放器首页</title>
+		<!-- <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" /> -->
+		<script>
+			var width = window.innerWidth;
+			var bili = width / 7.5;
+			document.documentElement.style.fontSize = bili + "px";
+		</script>
+		<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+	</head>
+	<body>
+		
+		<div class="container-fluid" id="app" v-cloak>
+			<index-banner :list="list"></index-banner>
+			<!-- 
+			<div class="row">
+				<div class="col p-0">
+					<!-- 轮播图
+					<div id="slideBox" class="slideBox">
+						<div class="bd">
+							<ul>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>
+						<div class="hd">
+							<ul>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div> -->
+			<!-- 间隔div -->
+			<div class="row">
+				<div class="col-12 space"></div>
+			</div>
+			<!-- 热门影音 -->
+			<div class="row hot py-1">
+				<img src="images/ia_100000053.png" class="col-1" style="width: 0.3rem; height: 0.5rem;" />
+				<div class="col-11">
+					<h4>热门影音</h4>
+				</div>
+			</div>
+			<index-hotmu :hotmu="hotmu"></index-hotmu>
+			<!-- <div class="row pb-1">
+				<div class="col hotmu p-0">
+				</div>
+			</div> -->
+			<!-- 间隔div -->
+			<div class="row">
+				<div class="col-12 space"></div>
+			</div>
+			<!-- 热门预告 -->
+			<div class="row hot py-1">
+				<img src="images/ia_100000054.png" class="col-1" style="width: 0.3rem; height: 0.5rem;" />
+				<div class="col-11">
+					<h4>热门预告</h4>
+				</div>
+			</div>
+			<index-mv :mv="mv"></index-mv>
+			<!-- 
+			<div class="row pb-1 mv">
+				<video width="800" controls="controls" height="">
+					<source src="myvideo.mp4" type="video/mp4">
+					</source>
+					<source src="myvideo.ogv" type="video/ogg">
+					</source>
+					<source src="myvideo.webm" type="video/webm">
+					</source>
+					<object width="" height="" type="application/x-shockwave-flash" data="myvideo.swf">
+						<param name="movie" value="myvideo.swf" />
+						<param name="flashvars" value="autostart=true&amp;file=myvideo.swf" />
+					</object>
+					当前浏览器不支持 video直接播放，点击这里下载视频： <a href="myvideo.webm">下载视频</a>
+				</video>
+			</div> -->
+			<!-- 猜你喜欢 -->
+			<div class="row hot py-1">
+				<img src="images/ia_100000059.png" class="col-1" style="width: 0.3rem; height: 0.5rem;" />
+				<div class="col-11">
+					<h4>猜你喜欢</h4>
+				</div>
+			</div>
+			<index-lv :lv="lv"></index-lv>
+			<!-- <div class="row pb-1">
+				<div class="col-12">
+					<div class="container-fluid lv">
+						<div class="row"></div>
+					</div>
+				</div>
+			</div> -->
+			<div class="row bot">
+				<div class="col-4 active">
+					<div><img src="images/ia_100000044.png"></div>
+					<p>首页</p>
+				</div>
+				<div class="col-4">
+					<div><img src="images/ia_100000045.png"></div>
+					<p>搜索</p>
+				</div>
+				<div class="col-4">
+					<div><img src="images/ia_100000046.png"></div>
+					<p>我的</p>
+				</div>
+			</div>
+		</div>
+		<script src="../js/jquery-3.3.1.min.js"></script>
+		<script src="js/vue.2.6.11.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/TouchSlide.1.1.js"></script>
+		<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

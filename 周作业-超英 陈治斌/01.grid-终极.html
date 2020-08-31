@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- 启用浏览器的高级别版本 
+    比如在IE中，一个IE浏览器内置了多个版本，如果想要让IE使用最高模式来解析页面，而不是默认的模式，则需要添加这行代码
+    -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!-- 视口 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0,maximum-scale=1.0, user-scalable=0" />
+    <!-- 导入BS的全局样式：只需一个即可，
+        要么选择器压缩版， 开发环境（上线后）
+        要么选择未压缩版 ，生产环境（开发时）
+    -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<style>
+		.x{
+			width: 100%;
+			height: 10px;
+			background-color: #999999;
+		}
+		#oul{
+			list-style: none;
+			margin-left: -30px;
+			
+		}
+		#oul li{
+			float: left;
+			width:120px;
+			/* word-wrap: unset; */
+			margin-right: 10px;
+			overflow: hidden;
+			position: relative;
+			left: 0;
+		}
+		.h{
+			color: yellow;
+		}
+		.hui{
+			color: #999;
+		}
+		#oul1{
+			list-style: none;
+			margin-left: -30px;
+			
+		}
+		
+		#oul1 li{
+			float: left;
+			width:47%;
+			/* word-wrap: unset; */
+			margin-right: 12px;
+			overflow: hidden;
+			position: relative;
+			left: 0;
+			
+		}
+		
+		#oul1 li span{
+			position: relative;
+			top: -70px;
+			z-index: 20;
+			color: #fff;
+			left: 20px;
+		}
+		
+	</style>
+</head>
+<body>
+			
+			<div id="a1">
+				<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+				  <ol class="carousel-indicators">
+				    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+				    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+				    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+				  </ol>
+				  <div class="carousel-inner">
+				    <div class="carousel-item" v-for="item,index in list.data" :class="{active:index==0}">
+				      <img :src="item.image" class="d-block w-100" alt="...">
+					  <!-- {{index}} -->
+				    </div>
+				   
+				  </div>
+				  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+				    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				    <span class="sr-only">Previous</span>
+				  </a>
+				  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+				    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+				    <span class="sr-only">Next</span>
+				  </a>
+				</div>
+
+				<div class="x"></div>
+				
+				<div class="bg-white">
+					
+				<div><div style="width: 30px;height: 30px; display:inline-block"><img src="images/ia_100000053.png" class="img-fluid"></div><span class="">热门超英</span></div>
+				
+				<div style="overflow: hidden;" id="one">
+					
+					<ul style="width: 300%;" id="oul">
+						
+						<li class="oli" v-for="item,index in list1.data"><img :src="item.cover" class="img-fluid"><h4 style="white-space:nowrap">{{item.name}}</h4></li>
+						
+					</ul>
+					
+				</div>	
+					
+				</div>
+				
+				<div class="x"></div>
+				
+				<div class="bg-white">
+					
+					<div><div style="width: 30px;height: 30px; display:inline-block"><img src="images/ia_100000054.png" class="img-fluid"></div><span class="">热门预告</span></div>
+					
+					<ul id="oul1">
+						
+						<li v-for="item,index in list2.data" :style="{display:index<2?'block':'none'}"><img :src="item.poster" class="img-fluid"><span>{{item.totalTime}}</span></li>
+						
+					</ul>
+					
+				</div>
+				
+				<div class="bg-white">
+					
+					<div><div style="width: 30px;height: 30px; display:inline-block"><img src="images/ia_100000059.png" class="img-fluid"></div><span class="">猜你喜欢</span></div>
+					
+					<div class="row my-2" v-for="item,index in list3.data">
+						<div class="col-3">
+							<img :src="item.cover" class="img-fluid">
+						</div>
+						
+						<div class="col-6">
+							<h5 class="mt-0 my-0" style="white-space:nowrap overflow: hidden;">{{item.name}}</h5>
+							<p class="mt-0 my-0" style="white-space:nowrap overflow: hidden;">{{item.basicInfo}}</p>
+							<p class="mt-0 my-0" style="white-space:nowrap overflow:hidden;">{{item.releaseDate}}</p>
+						</div>
+						
+						<div class="col-3 border-left py-5">
+							<p>赞一个</p>
+						</div>
+						
+					</div>
+				
+				</div>
+				
+				</div>	
+				
+    <!-- JS的顺序 -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <!-- 2\poper.js -->
+    <script src="js/popper.min.js"></script>
+    <!-- 3\bootstrap.min.js -->
+    <script src="js/bootstrap.min.js"></script>
+	<script src="js/vue.2.6.11.js"></script>
+	
+	
+	
+	<script>
+	var vm=new Vue({
+	    el:"#a1",
+	    data:{
+	        list:{},
+			list1:{},
+			list2:{},
+			list3:{}
+	    },
+	    methods:{
+	        
+	    },
+	    computed:{
+	        
+	    },
+	    watch:{
+	
+	    },
+	    // 声明周期函数，在创建实例时会自动执行
+	    created(){
+	        var that=this;
+	        // 在这里嵌入ajax代码，通过ajax将数据读取出来，并且放到data中即可
+	        console.log(1);
+	        //如果使用js的ajax，则可以不导入jquery
+	        $.ajax({
+				type:"post",
+	            url:"https://www.imovietrailer.com/superhero/index/carousel/list?qq=947876",
+	            success:function(res){
+	                // console.log(res.data)
+	                // console.log(this)
+	                // 找到vue的data的list，并且将数据赋值给给它
+	                that.list=res;
+	            }
+	        });
+			
+			$.ajax({
+				type:"post",
+			    url:"https://www.imovietrailer.com/superhero/index/movie/hot?type=superhero&&qq=947876",
+			    success:function(res){
+			        // console.log(res.data)
+			        // console.log(this)
+			        // 找到vue的data的list，并且将数据赋值给给它
+			        that.list1=res;
+			    }
+			});
+			
+			$.ajax({
+				type:"post",
+			    url:"https://www.imovietrailer.com/superhero/index/movie/hot?type=trailer&&qq=947876",
+			    success:function(res){
+			        // console.log(res)
+			        // console.log(this)
+			        // 找到vue的data的list，并且将数据赋值给给它
+			        that.list2=res;
+			    }
+			});
+			
+			$.ajax({
+				type:"post",
+			    url:"https://www.imovietrailer.com/superhero/index/guessULike?qq=947876",
+			    success:function(res){
+			        console.log(res)
+			        // console.log(this)
+			        // 找到vue的data的list，并且将数据赋值给给它
+			        that.list3=res;
+			    }
+			});
+	    }
+	});
+	</script>
+</body>
+</html>

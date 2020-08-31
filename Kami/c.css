@@ -1,0 +1,175 @@
+body{
+    font-size: 0.16rem; /*16px*/
+}
+								/* banner样式css*/
+							.focus{ 
+								width:100%;
+								margin:0 auto; 
+								position:relative; 
+								overflow:hidden;   
+							}
+							.focus .hd{ 
+								width:100%; 
+								height:0.05rem;  
+								position:absolute; 
+								z-index:1; 
+								bottom:0.1rem; 
+								text-align:center;  
+							}
+							.focus .hd ul{ 
+								overflow:hidden; 
+								display:-moz-box; 
+								display:-webkit-box; 
+								display:box; height:0.05rem; 
+								display: flex;
+								justify-content:center; 
+							}
+							.focus .hd ul li{ 
+								width: 0.2rem; 
+								border-radius: 25%;
+								margin:0 0.01rem;
+								background: white;
+							}
+							.focus .hd ul .on{ 
+								background:skyblue;  
+							}
+							.focus .bd{ 
+								position:relative; 
+								z-index:0; 
+							}
+							.focus .bd li img{ 
+								width:100%;  
+							}
+							.focus .bd li a{ 
+							-webkit-tap-highlight-color:rgba(0, 0, 0, 0); /* 取消链接高亮 */ 
+							}
+							
+							
+/* 热门英雄 */
+.rmyx{
+	width: 100%;
+	margin-top: 0.1rem;
+	padding-left: 0.2rem;
+	background-color: white;
+}
+.rmyx_top{
+	width: 100%;
+}
+.rmyx_top>img{
+	width: 0.3rem;
+}
+.rmyx_top>span{
+	font-size: 0.4rem;
+	font-weight: bold;
+	margin-left: 0.2rem;
+}
+.rrmm{
+	width: 7.5rem;
+}
+.rm_ul{
+	width: 100%;
+	margin-top: 0.2rem;
+	overflow: auto;
+	display: flex;
+}
+.rm_ul>li{
+	width: 2rem;
+	margin-right: 0.1rem;
+}
+.rm_ul>li>img{
+	width: 2rem;
+	height: 2.7rem;
+}
+.rm_ul>li>p{
+	font-size: 0.26rem;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	font-weight: bold;
+}
+.rm_ul>li>p>img{
+	width: 10%;
+}
+
+/* 热门预告 */
+.yg{
+	width: 100%;
+	margin-top: 0.1rem;
+	padding-left: 0.2rem;
+	padding-right: 0.2rem;
+	background-color: white;
+}
+.yg_top{
+	width: 100%;
+}
+.yg_top>img{
+	width: 0.3rem;
+}
+.yg_top>span{
+	font-size: 0.4rem;
+	font-weight: bold;
+	margin-left: 0.2rem;
+}
+.shuang{
+	margin-top: 0.2rem;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+.shuang>.zuo{
+	width: 2.8rem;
+}
+.shuang>.zuo>img{
+	width: 100%;
+}
+/* 猜你喜欢 */
+	.da{
+    width: 100%;
+    height: 13rem;
+    justify-content: space-between;
+    background-color: white;
+	}
+	.tuwen{
+		width: 68%;
+		height: 2.5rem;
+		float: left;
+		padding: 0.2rem;
+		display: flex;
+		border-right: 6px dashed gray;
+	}
+	.zan{
+	width: 30%;
+	float: left;
+    padding-top: 0.7rem;
+    height: 2.5rem;
+    text-align: center;
+	}
+	.tu{
+		 width: 1.9rem;
+		 border-radius: 10%;
+	}
+	.tu>img{
+		width: 90%;
+	}
+	.wen{
+		width: 1.8rem;
+	}
+	.zhu{
+		font-size: 0.26rem;
+	}
+	.wen>p>img{
+		width: 0.2rem;
+		border-radius: 5%;
+	}
+	.pj{
+		color: gray;
+	}
+	.zan>img{
+		width: 0.5rem;
+		margin: 0 auto;
+	}
+	.zan>p{
+		color: orange;
+		font-size: 0.3rem;
+	}
+	

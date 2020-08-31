@@ -1,0 +1,20 @@
+## 首页数据地址
+1. 轮播图
+接口地址：https://www.imovietrailer.com/superhero/index/carousel/list?qq=947876
+获取方式：post
+
+2. 熱門超英
+接口地址：https://www.imovietrailer.com/superhero/index/movie/hot?type=superhero&&qq=947876
+获取方式：post
+
+3. 热门超英预告
+接口地址：https://www.imovietrailer.com/superhero/index/movie/hot?type=trailer&&qq=947876
+获取方式：post
+
+4. 猜你喜欢
+接口地址：https://www.imovietrailer.com/superhero/index/guessULike?qq=947876
+获取方式：post
+
+说明：
+首页是由4个板块组成的，每个板块的数据都是通过一个ajax加载的json完成。所以你需要使用4次ajax加载不同的惊悚，然后解析json并且动态生成HTML显示到视图上。
+可以使用JS也可以使用JQ的ajax方式来实现。

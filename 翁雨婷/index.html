@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- 先将jquery库引入到当前页面 -->
+    <script src="js/zepto.min.js"></script>
+    <script src="js/TouchSlide.1.1.js"></script>
+     <script src="js/index.js"></script>
+     
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+<!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"> -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+   
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <!-- 视口 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+      <script>
+        var width=window.innerWidth;
+        //6.4是根据设计图的大小除以100，需要按照你的实际设计图换算
+        var bili=width/7.5;
+        document.documentElement.style.fontSize=bili+"px";
+
+        // 此时  100px=1rem
+        // 将所有在设计图量出的尺寸都除以100即可转为对应的rem
+    </script>
+</head>
+<body>
+<!-- banner -->
+        <div id="slideBox" class="slideBox">
+            <div class="bd">
+               
+                    <ul id="banner">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                
+            </div>
+
+             <div class="hd">
+                     <ul>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+             </div>
+        </div>  
+        </div>
+
+<!-- 热门超英 -->
+    <div class="hotMain">
+        <div class="hot1">
+            <img src="images/ia_100000053.png" style="width:0.4rem">
+            <h1>热门超英</h1>
+        </div>
+
+       <div id="hot">
+           
+       </div>
+    </div>
+
+<!--热门预告 -->
+    <div class="hotYgao">
+        <div class="hot1">
+            <img src="images/ia_100000054.png" style="width:0.4rem">
+            <h1>热门预告</h1>
+       </div>
+
+        <div id="moive">
+
+       </div> 
+
+ <!--猜你喜欢 -->
+    <div class="like">
+         <div class="hot1">
+            <img src="images/ia_100000059.png" style="width:0.4rem">
+            <h1>猜你喜欢</h1>
+         </div>
+
+       <div class="likeMain">
+
+       </div>
+
+    </div>
+ </div>  
+<!-- 尾部 -->
+<div class="f">
+    
+</div>
+    <div class="foot">
+            <div>
+                <img src="images/ia_100000044.png">
+                <p>首页</p>
+            </div>
+
+             <div>
+                <img src="images/ia_100000045.png">
+                <p>搜索</p>
+            </div>
+
+             <div>
+                <img src="images/ia_100000046.png">
+                <p>我的</p>
+            </div>
+    </div>
+</body>
+</html>

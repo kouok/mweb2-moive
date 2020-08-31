@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+    <!--viewport一定要加 user-scalable 值可以是yes|no或1|0 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0,maximum-scale=1.0, user-scalable=0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+    <!-- 禁止将数字转为号码 -->
+    <meta name="format-detection" content="telephone=no" />
+    <!-- 控制顶栏状态栏显示样式，可以为透明 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<script src="js/TouchSlide.1.1.js"></script>
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<script src="js/vue.2.6.11.js"></script>
+		<link rel="stylesheet" href="c.css">
+		<link rel="stylesheet" href="reset.css">
+		<script>   
+		    var width=window.innerWidth;
+		    //6.4是根据设计图的大小除以100
+		    var bili=width/6.4;
+		    document.documentElement.style.fontSize=bili+"px";
+		</script>
+		<script>
+		    // $.trim(); 去掉首尾空格
+		    // $.each();  for循环
+		//jquery 版本的ajax更好用，更简单
+		//$.方法名  全局的方法
+		//$("css选择器")  对象方法，用来操作html
+		
+		
+		// 轮播
+		// $(function(){
+		// 	var ii=document.getElementById("ii");
+		// 	var li=ii.getElementsByTagName("li");
+		// 	console.log(li);
+		// 	   $.ajax({
+		// 			type:"post",
+		// 			url:"https://www.imovietrailer.com/superhero/index/carousel/list?qq=947876",
+		// 			success:function(res){
+		// 					$.each(res.data,function(index,item){
+		// 						li[index].innerHTML=`
+		// 								<a href="#"><img src="${res.data[index].image}"></a>
+		// 							  `
+		// 					})
+		// 			},
+		// 			error:function(){
+		// 				alert("获取失败，请稍后再试！");
+		// 			}
+						
+		// 	   });			
+		// })
+
+
+// 热门超级英雄
+	// $(function(){
+	// 	var rm=document.querySelectorAll(".rm_ul>li");
+	// 	console.log(rm);
+	// 	$.ajax({
+	// 		type:"post",
+	// 		url:"https://www.imovietrailer.com/superhero/index/movie/hot?type=superhero&&qq=947876",
+	// 		success:function(res){
+	// 			$.each(res.data,function(index,item){
+	// 				rm[index].innerHTML=`
+	// 										<img src="${res.data[index].cover}" alt="">
+	// 										<p>${res.data[index].name}</p>
+	// 										<p>
+	// 											<img src="images/ia_100000092.png">
+	// 											<img src="images/ia_100000092.png">
+	// 											<img src="images/ia_100000092.png">
+	// 											<img src="images/ia_100000092.png">
+	// 											<img src="images/ia_100000092.png">
+	// 											<span>
+	// 												9.1
+	// 											</span>
+	// 										</p>
+	// 									`
+	// 			})
+	// 			// console.log(res);
+	// 		},
+	// 				error:function(){
+	// 					alert("获取失败，请稍后再试！");
+	// 				}
+	// 	})
+	// })
+	
+	// 热门预告
+	// $(function(){
+	// 	var shuang=document.querySelectorAll(".shuang");
+	// 	$.ajax({
+	// 		type:"post",
+	// 		url:"https://www.imovietrailer.com/superhero/index/movie/hot?type=trailer&&qq=947876",
+	// 		success:function(res){
+	// 			$.each(res.data,function(index,item){
+	// 				shuang[index].innerHTML=`
+	// 										<div class="zuo">
+	// 											<img src="http://122.152.205.72:88/superhero/MARVEL/SpiderManHomecoming/poster.png" >
+	// 										</div>
+	// 										<div class="zuo">
+	// 											<img src="http://122.152.205.72:88/superhero/MARVEL/Avengers3/poster.png" >
+	// 										</div>
+	// 									`
+	// 			})
+	// 			// console.log(res);
+	// 		},
+	// 				error:function(){
+	// 					alert("获取失败，请稍后再试！");
+	// 				}
+	// 	})
+	// })
+	
+	// 猜你喜欢
+	
+	// $(function(){
+	// 	var da=document.querySelectorAll(".da");
+	// 	// console.log(da);
+	// 	$.ajax({
+	// 		type:"post",
+	// 		url:"https://www.imovietrailer.com/superhero/index/guessULike?qq=947876",
+	// 		success:function(res){
+	// 			$.each(res.data,function(index,item){
+	// 				console.log(item);
+	// 				da[0].innerHTML+=`
+	// 									<div class="tuwen">
+	// 										<div class="tu">
+	// 											<img src="${res.data[index].cover}">
+	// 										</div>
+	// 										<div class="wen">
+	// 											<p class="zhu">${res.data[index].name}</p>
+	// 											<p>
+	// 												<img src="images/ia_100000092.png">
+	// 												<img src="images/ia_100000092.png">
+	// 												<img src="images/ia_100000092.png">
+	// 												<img src="images/ia_100000092.png">
+	// 												<img src="images/ia_100000092.png">	
+	// 											</p>
+	// 											<p class="pj">
+	// 												${res.data[index].basicInfo}
+	// 											</p>
+	// 											<p class="pj">
+	// 												${res.data[index].releaseDate}
+	// 											</p>
+	// 										</div>
+	// 									</div>
+	// 									<div class="zan">
+	// 										<img src="images/ia_100000094.png" alt="">
+	// 										<p>赞一下</p>
+	// 									</div>
+	// 									`
+	// 			})
+	// 			console.log(res);
+	// 		},
+	// 				error:function(){
+	// 					alert("获取失败，请稍后再试！");
+	// 				}
+	// 	})
+	// })
+	
+		</script>
+	</head>
+	<body style="background-color: #F5F5F5;">
+		<!-- 轮播 -->
+<div id="ad">
+	<banner :list="list"></banner>
+<!-- 	<div id="focus" class="focus">
+		<div class="hd">
+			<ul></ul>
+		</div>
+		<div class="bd">
+			<ul id="ii">
+				<li><a href="#"><img src="${res.data[index].image}"></a></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+	</div> -->
+	<!-- 热门英雄 -->
+	<remen :remen="remen"></remen>
+<!-- 	<div class="rmyx">
+		<div class="rmyx_top">
+			<img src="images/ia_100000053.png" alt="">
+			<span>热门英雄</span>
+		</div>
+		<div class="rrmm">
+			<ul class="rm_ul" id="rm">
+				<li>
+					<img src="${res.data[index].cover}" alt="">
+					<p>${res.data[index].name}</p>
+					<p>
+						<img src="images/ia_100000092.png">
+						<img src="images/ia_100000092.png">
+						<img src="images/ia_100000092.png">
+						<img src="images/ia_100000092.png">
+						<img src="images/ia_100000092.png">
+						<span>
+							9.1
+						</span>
+					</p>
+				</li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>			
+		</div>
+	</div> -->
+	<!-- 热门预告 -->
+	<yugao></yugao>
+<!-- 	<div class="yg">
+		<div class="yg_top">
+			<img src="images/ia_100000054.png" >
+			<span>
+				热门预告
+			</span>
+			<div class="shuang">
+				<div class="zuo">
+					<img src="http://122.152.205.72:88/superhero/MARVEL/SpiderManHomecoming/poster.png" >
+				</div>
+				<div class="zuo">
+					<img src="http://122.152.205.72:88/superhero/MARVEL/Avengers3/poster.png" >
+				</div>
+			</div>
+		</div>
+	</div> -->
+	<!-- 猜你喜欢 -->
+	<xihuan :xihuan="xihuan"></xihuan>
+<!-- 	<div class="yg">
+		<div class="yg_top">
+			<img src="images/ia_100000059.png">
+			<span>
+				猜你喜欢
+			</span>
+			<div class="da">
+				<div class="tuwen">
+					<div class="tu">
+						<img src="${res.data[index].cover}">
+					</div>
+					<div class="wen">
+						<p class="zhu">${res.data[index].name}</p>
+						<p>
+							<img src="images/ia_100000092.png">
+							<img src="images/ia_100000092.png">
+							<img src="images/ia_100000092.png">
+							<img src="images/ia_100000092.png">
+							<img src="images/ia_100000092.png">	
+						</p>
+						<p class="pj">
+							${res.data[index].basicInfo}
+						</p>
+						<p class="pj">
+							${res.data[index].releaseDate}
+						</p>
+					</div>
+				</div>
+				<div class="zan">
+					<img src="images/ia_100000094.png" alt="">
+					<p>赞一下</p>
+				</div>
+			</div>
+		</div>
+	</div> -->
+</div>
+	</body>
+	<script type="text/javascript">
+				
+	</script>
+</html>
+		<script type="text/javascript">
+			// banner
+			Vue.component("banner",{
+				data(){
+					return {
+						
+					}
+				},
+				props:["list"],
+				template:`
+				<div id="focus" class="focus">
+					<div class="hd">
+						<ul></ul>
+					</div>
+					<div class="bd">
+						<ul id="ii">
+							<li v-for="item,index in list"><a href="#"><img :src="item.image"></a></li>
+						</ul>
+					</div>
+				</div>
+						 `
+			})
+			
+			// 热门超极英雄
+			Vue.component("remen",{
+				data(){
+					return {
+						
+					}
+				},
+				props:["remen"],
+				template:`
+							<div class="rmyx">
+								<div class="rmyx_top">
+									<img src="images/ia_100000053.png" alt="">
+									<span>热门英雄</span>
+								</div>
+								<div class="rrmm">
+									<ul class="rm_ul" id="remen">
+										<li v-for="item,index in remen">
+											<img :src="item.cover" alt="">
+											<p>{{item.name}}</p>
+											<p>
+												<img src="images/ia_100000092.png">
+												<img src="images/ia_100000092.png">
+												<img src="images/ia_100000092.png">
+												<img src="images/ia_100000092.png">
+												<img src="images/ia_100000092.png">
+												<span>
+													9.1
+												</span>
+											</p>
+										</li>
+									</ul>			
+								</div>
+							</div>
+						 `
+			})
+			
+			// 热门预告
+			Vue.component("yugao",{
+				data(){
+					return {
+						
+					}
+				},
+				props:["yugao"],
+				template:`
+							<div class="yg">
+								<div class="yg_top">
+									<img src="images/ia_100000054.png" >
+									<span>
+										热门预告
+									</span>
+									<div class="shuang">
+										<div class="zuo">
+											<img src="http://122.152.205.72:88/superhero/MARVEL/SpiderManHomecoming/poster.png" >
+										</div>
+										<div class="zuo">
+											<img src="http://122.152.205.72:88/superhero/MARVEL/Avengers3/poster.png" >
+										</div>
+									</div>
+								</div>
+							</div>
+						 `
+			});
+			// 猜你喜欢
+			Vue.component("xihuan",{
+				data(){
+					return {
+						
+					}
+				},
+				props:["xihuan"],
+				template:`
+							<div class="yg">
+								<div class="yg_top">
+									<img src="images/ia_100000059.png">
+									<span>
+										猜你喜欢
+									</span>
+									<div class="da">
+										<div  v-for="item,index in xihuan">
+											<div class="tuwen">
+												<div class="tu">
+													<img :src="item.cover">
+												</div>
+												<div class="wen">
+													<p class="zhu">{{item.name}}</p>
+													<p>
+														<img src="images/ia_100000092.png">
+														<img src="images/ia_100000092.png">
+														<img src="images/ia_100000092.png">
+														<img src="images/ia_100000092.png">
+														<img src="images/ia_100000092.png">	
+													</p>
+													<p class="pj">
+														{{item.basicInfo}}
+													</p>
+													<p class="pj">
+														{{item.releaseDate}}
+													</p>
+												</div>
+											</div>
+											<div class="zan">
+												<img src="images/ia_100000094.png" alt="">
+												<p>赞一下</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						 `
+			})
+			var vm=new Vue({
+				el:"#ad",
+				data:{
+					list:[],
+					remen:[],
+					yugao:[],
+					xihuan:[],
+				},
+				methods:{
+					
+				},
+				created(){
+					var that=this;
+					// 如果使用js的ajax，则可以不导入jquery
+					// banner
+					$.ajax({
+						type:"post",
+						url:"https://www.imovietrailer.com/superhero/index/carousel/list?qq=947876",
+						success:function(res){
+							// console.log(res)
+							// console.log(this)
+							// 找到vue的data的list，并且将数据赋值给给它
+							that.list=res.data;
+							// console.log(that.list)	
+						}
+					});
+					// 热门超极英雄
+					$.ajax({
+						type:"post",
+						url:"https://www.imovietrailer.com/superhero/index/movie/hot?type=superhero&&qq=947876",
+						success:function(res){
+							// console.log(res)
+							// console.log(this)
+							// 找到vue的data的list，并且将数据赋值给给它
+							that.remen=res.data;
+							// console.log(that.remen)
+						}
+					});
+					// 热门预告
+					$.ajax({
+						type:"post",
+						url:"https://www.imovietrailer.com/superhero/index/movie/hot?type=trailer&&qq=947876",
+						success:function(res){
+							// console.log(res)
+							// console.log(this)
+							// 找到vue的data的list，并且将数据赋值给给它
+							that.yugao=res.data;
+							// console.log(that.yugao)
+						}
+					});
+					// 猜你喜欢
+					$.ajax({
+						type:"post",
+						url:"https://www.imovietrailer.com/superhero/index/guessULike?qq=947876",
+						success:function(res){
+							// console.log(res)
+							// console.log(this)
+							// 找到vue的data的list，并且将数据赋值给给它
+							that.xihuan=res.data;
+							console.log(that.xihuan);
+						}
+					});
+				},
+				updated() {
+					TouchSlide({
+						slideCell:"#focus",
+						titCell:".hd ul",  //此时设置 titCell 为导航元素包裹层
+						mainCell:".bd ul", 
+						effect:"leftLoop", 
+						autoPlay:true,//自动播放   //开启自动分页 autoPage:true
+						autoPage:true //自动分页
+					});
+				}
+			})
+		</script>
+
+ 

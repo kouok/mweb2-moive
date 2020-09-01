@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	 <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- 先将jquery库引入到当前页面 -->
+    <script src="js/zepto.min.js"></script>
+    <script src="js/TouchSlide.1.1.js"></script>
+    <!-- <script src="js/index.js"></script> -->
+    <script src="js/vue.2.6.11.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+<!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"> -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+   
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <!-- 视口 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+      <script>
+        var width=window.innerWidth;
+        //6.4是根据设计图的大小除以100，需要按照你的实际设计图换算
+        var bili=width/7.5;
+        document.documentElement.style.fontSize=bili+"px";
+
+        // 此时  100px=1rem
+        // 将所有在设计图量出的尺寸都除以100即可转为对应的rem
+    </script>
+
+</head>
+<body>
+	<div id="app">
+		<banner :list="list"></banner>
+		<rmcy :cy="cy"></rmcy>
+		<rmyg :yg="yg"></rmyg>
+		<like :xh="xh"></like>
+		<wb></wb>
+
+
+	</div>
+	
+	<!-- 数据 -->
+	<script type="text/javascript">
+
+	// banner
+	Vue.component("banner",{
+		props:["list"],
+		template:`
+				 <div id="slideBox" class="slideBox">
+		            <div class="bd">
+	                    <ul id="banner">
+							<li style="display: table-cell; vertical-align: top;" v-for="item in list.data">
+	                            <a class="pic" href="#"><img :src="item.image"></a>
+	                        </li>
+	                    </ul>
+		            </div>
+
+	             <div class="hd">
+                     <ul>
+                        <li v-for="item in list.data"></li>
+                    </ul>
+	             </div>
+	        </div>  
+			`
+	});
+
+	// 热门超英
+	Vue.component("rmcy",{
+		props:["cy"],
+		template:`
+				 <div class="hotMain">
+			        <div class="hot1">
+			            <img src="images/ia_100000053.png" style="width:0.4rem">
+			            <h1>热门超英</h1>
+			        </div>
+
+			       <div id="hot">
+			           <div class="card1" v-for="item in cy.data">
+	                            <img :src="item.cover" class="img1">
+								<h4 class="cutFont">{{item.name}}</h4>
+								<span>{{item.score}}</span>
+						</div>
+			       </div>
+			    </div>
+			`
+	});
+
+	// 热门预告
+	Vue.component("rmyg",{
+		props:["yg"],
+		template:`
+			<div class="hotYgao">
+		        <div class="hot1">
+		            <img src="images/ia_100000054.png" style="width:0.4rem">
+		            <h1>热门预告</h1>
+		       </div>
+
+		        <div id="moive">
+					<div class="m1" v-for="item in yg.data">
+             	   		<video controls :src="item.trailer" poster="item.poster" loop="loop"></video>	
+	                </div>
+		       </div> 
+		    </div>
+			`
+	});
+
+	// 猜你喜欢
+	Vue.component("like",{
+		props:["xh"],
+		template:`
+			<div class="like">
+		         <div class="hot1">
+		            <img src="images/ia_100000059.png" style="width:0.4rem">
+		            <h1>猜你喜欢</h1>
+		         </div>
+
+		       <div class="likeMain" v-for="item in xh.data">
+					<div class="likeMain1">
+		               <div><img :src="item.cover" style="width:2rem"></div>
+		                <div style="width:2.6rem;">
+		                    <h2>{{item.name}}</h2>
+		                    <img src="images/ia_100000092.png" style="width:0.2rem">
+		                    <img src="images/ia_100000092.png" style="width:0.2rem">
+		                    <img src="images/ia_100000092.png" style="width:0.2rem">
+		                    <img src="images/ia_100000092.png" style="width:0.2rem">
+		                    <img src="images/ia_100000093.png" style="width:0.2rem">
+		                    <p>{{item.basicInfo}}</p>
+		                    <p>{{item.releaseDate}}</p>
+		                    
+		                </div>
+
+		                <div class="hr1"></div>
+
+		                <div>
+		                     <img src="images/ia_100000094.png" style="width:0.4rem">
+		                    <p>赞一下</p>
+		                </div>
+		         </div>
+		       </div>
+
+		    </div> 
+			`
+	});
+
+	// 尾部
+	Vue.component("wb",{
+		template:`
+			<div>
+				<div class="f"></div>
+			    <div class="foot">
+		            <div>
+		                <img src="images/ia_100000044.png">
+		                <p>首页</p>
+		            </div>
+
+		             <div>
+		                <img src="images/ia_100000045.png">
+		                <p>搜索</p>
+		            </div>
+
+		             <div>
+		                <img src="images/ia_100000046.png">
+		                <p>我的</p>
+		            </div>
+			    </div>
+			</div>
+			`
+	});
+
+	var vm=new Vue({
+		el:"#app",
+		data:{
+			list:{},
+			cy:{},
+			yg:{},
+			xh:{}
+		},
+		methods:{
+                
+        },
+        // 声明周期函数，在创建实例时会自动执行
+        created(){
+            var that=this;
+            // 在这里嵌入ajax代码，通过ajax将数据读取出来，并且放到data中即可
+            console.log(1);
+            //如果使用js的ajax，则可以不导入jquery
+            $.ajax({
+            	type:"post",
+                url:"https://www.imovietrailer.com/superhero/index/carousel/list?qq=947876",
+                success:function(res){
+                	console.log(res);
+	            	that.list=res; 
+		        },
+	            error:function(){
+	                alert("获取失败，请稍后再试！");
+	            }
+		          
+            });
+
+            $.ajax({
+            	type:"post",
+                url:"https://www.imovietrailer.com/superhero/index/movie/hot?type=superhero&&qq=947876",
+                success:function(res){
+                	console.log(res);
+	            	that.cy=res; 
+		        },
+	            error:function(){
+	                alert("获取失败，请稍后再试！");
+	            }
+		          
+            });
+
+            $.ajax({
+            	type:"post",
+                url:"https://www.imovietrailer.com/superhero/index/movie/hot?type=trailer&&qq=947876",
+                success:function(res){
+                	console.log(res);
+	            	that.yg=res; 
+		        },
+	            error:function(){
+	                alert("获取失败，请稍后再试！");
+	            }
+		          
+            });
+
+            $.ajax({
+            	type:"post",
+                url:"https://www.imovietrailer.com/superhero/index/guessULike?qq=947876",
+                success:function(res){
+                	console.log(res);
+	            	that.xh=res; 
+		        },
+	            error:function(){
+	                alert("获取失败，请稍后再试！");
+	            }
+		          
+            });
+        },
+        updata(){
+        	 TouchSlide({ 
+	            slideCell:"#slideBox",
+	            titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+	            mainCell:".bd ul", 
+	            effect:"leftLoop", 
+	            autoPage:true,//自动分页
+	            autoPlay:true //自动播放
+        	});
+
+        }
+	});
+
+
+
+
+	</script>
+	
+</body>
+</html>

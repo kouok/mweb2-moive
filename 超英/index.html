@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <!--viewport一定要加 user-scalable 值可以是yes|no或1|0 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0,maximum-scale=1.0, user-scalable=0" />
+    <!-- 禁止将数字转为号码 -->
+    <meta name="format-detection" content="telephone=no" />
+    <!-- 控制顶栏状态栏显示样式，可以为透明 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <!-- 添加一个网站图标，这样当你将网站添加到桌面图标时，会显示出来 -->
+    <link rel="apple-touch-icon-precomposed" href="mobile_logo.png?v1" />
+    <title>超英预告</title>
+    <link rel="stylesheet" href="css/reset.css"/>
+	<link rel="stylesheet" type="text/css" href="css/index.css"/>
+	<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/TouchSlide.1.1.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/vue.2.6.11.js" type="text/javascript" charset="utf-8"></script>
+    <!-- 将px转rem的公式代码 -->
+    <script>
+        var width=window.innerWidth;
+        //6.4是根据设计图的大小除以100，需要按照你的实际设计图换算
+        var bili=width/7.5;
+        document.documentElement.style.fontSize=bili+"px";
+
+        // 此时  100px=1rem
+        // 将所有在设计图量出的尺寸都除以100即可转为对应的rem
+    </script>
+<body>
+  <!-- 网页内容 -->
+  <!-- 記住写样式时將设计图量出的px除以100得到对应的rem 
+  比如：10px==> 0.1rem
+  -->
+<div id="index">
+	<!-- <div>{{lunbo}}</div> -->
+	<lunbo :list="lunbo"></lunbo>
+	<rmcy :list="rmcy"></rmcy>
+	<rmyg :list="rmyg"></rmyg>
+	<cnxh :list="cnxh"></cnxh>
+	<dibu></dibu>
+</div>
+	
+	<!-- 热门超英 -->
+	<script type="text/javascript">
+		// 轮播图
+		Vue.component("lunbo",{
+			props:["list"],
+			template:`
+				<div id="focus" class="focus">
+							<div class="hd">
+								<ul></ul>
+							</div>
+							<div class="bd">
+								<ul>
+										<li v-for="item in list.data"><a href="#"><img :src="item.image" /></a></li>
+								</ul>
+							</div>
+				</div>
+			`
+		})
+		// 热门超英
+		Vue.component("rmcy",{
+			props:["list"],
+			template:`
+				<div class="rmcy">
+					<div class="rm_top">
+						<img src="images/ia_100000053.png" ><span>热门超英</span>
+					</div>
+					
+					<div class="rm_bot">
+						<ul class="rm_cy">
+							<li v-for="item in list.data"><img :src="item.cover" ><h1>{{item.name}}</h1><p><rmcy_xin :leng="item.score"></rmcy_xin><span>{{item.score}}</span></p></li>
+						</ul>
+					</div>
+				</div>
+			`
+		})
+		Vue.component("rmcy_xin",{
+			props:["leng"],
+			template:`
+				<span><img src="images/ia_100000092.png" v-for="item in parseInt(leng/2)"><img src="images/ia_100000093.png" v-for="item in 5-parseInt(leng/2)"></span>
+			`
+		})
+		// 热门预告
+		Vue.component("rmyg",{
+			props:["list"],
+			template:`
+				<div class="rmyg">
+					<div class="rm_top">
+						<img src="images/ia_100000054.png" ><span>热门预告</span>
+					</div>
+					
+					<div class="rm_bot">
+						<ul class="rm_yg">
+							<li v-for="item,index in list.data" v-if="index<2">
+								<video class="v" controls :id="item.id" :src="item.trailer" :poster="item.poster"></video>
+								<div class="zg"><img src="images/播放按钮.png" ><p>{{totalTime}}</p></div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			`
+		})
+		//才你喜欢
+		Vue.component("cnxh",{
+			props:["list"],
+			template:`
+				<div class="cnxh">
+					<div class="rm_top">
+						<img src="images/ia_100000054.png" ><span>猜你喜欢</span>
+					</div>
+					
+					<div class="rm_bot">
+						<ul class="cn_xh">
+							<li v-for="item in list.data">
+										<div class="">
+											<img :src="item.cover" >
+											<div>
+												<h1>{{item.name}}</h1>
+												<cnxh_xin :leng="item.score"></cnxh_xin>
+												<p>{{item.basicInfo}}</p>
+												<p>{{item.releaseDate}}</p>
+											</div>
+										</div>
+										<div class="">
+											<img src="images/ia_100000094.png" >
+											<p>赞一下</p>
+										</div>
+							</li>
+						</ul>
+					</div>
+					
+				</div>
+			`
+		})
+		Vue.component("cnxh_xin",{
+			props:["leng"],
+			template:`
+				<p class="ipf"><img src="images/ia_100000092.png" v-for="item in parseInt(leng/2)"><img src="images/ia_100000093.png" v-for="item in 5-parseInt(leng/2)"></p>
+			`
+		})
+		
+		// 底部
+		Vue.component("dibu",{
+			template:`
+				<ul class="dbdh">
+					<li><img src="images/ia_100000044.png" ><br><span>首页</span></li>
+					<li><img src="images/ia_100000045.png" ><br><span>搜索</span></li>
+					<li><img src="images/ia_100000046.png" ><br><span>我的</span></li>
+				</ul>
+			`
+		})
+		let vm=new Vue({
+			el:"#index",
+			data:{
+				lunbo:{},
+				rmcy:{},
+				rmyg:{},
+				cnxh:{}
+			},
+			created(){
+				var t=this;
+				$.ajax({
+					type:"post",
+					url:"https://www.imovietrailer.com/superhero/index/carousel/list?qq=947876",
+					success:function(res){
+						t.lunbo=res;
+						console.log(t.lunbo)
+					}
+				})
+				$.ajax({
+					type:"post",
+					url:"https://www.imovietrailer.com/superhero/index/movie/hot?type=superhero&&qq=947876",
+					success:function(res){
+						t.rmcy=res;
+						console.log(t.rmcy)
+					}
+				})
+				$.ajax({
+					type:"post",
+					url:"https://www.imovietrailer.com/superhero/index/movie/hot?type=trailer&&qq=947876",
+					success:function(res){
+						t.rmyg=res;
+					}
+				})
+				$.ajax({
+					type:"post",
+					url:"https://www.imovietrailer.com/superhero/index/guessULike?qq=947876",
+					success:function(res){
+						t.cnxh=res;
+					}
+				})
+			},
+			updated(){
+				TouchSlide({
+					slideCell:"#focus",
+					titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+					mainCell:".bd ul", 
+					effect:"leftLoop", 
+					autoPlay:true,//自动播放
+					autoPage:true //自动分页
+				})
+				var li=document.querySelectorAll(".hd li");
+				for(var i=0;i<li.length;i++){
+					li[i].innerText="";
+				}
+				for(let i=0;i<2;i++){
+					var oli=document.querySelectorAll(".rmyg .rm_yg li");
+					<!-- oli[i].index=i; -->
+					var v=document.querySelectorAll(".v");
+					var bf=oli[i].querySelector("img");
+					bf.onclick=function(){
+							v[i].play();
+							this.parentNode.style.display="none";
+					}
+				}
+			}
+		})
+	</script>
+</body>
+</html>

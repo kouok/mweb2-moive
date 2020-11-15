@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0,maximum-scale=1.0, user-scalable=0" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+		<style type="text/css">
+			*
+			{
+				margin: 0;
+				padding: 0;
+			}
+			
+			ul
+			{
+				list-style: none;
+			}
+			
+			#lbt
+			{
+				overflow: hidden;
+				height: 438px;
+				position: relative;
+			}
+			
+			#rmcy
+			{
+				overflow-x: scroll;
+				height: 355px;
+			}
+			
+			.cutFont {
+			  white-space: nowrap;
+			  text-overflow: ellipsis;
+			  overflow: hidden;
+			}
+		</style>
+		<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="js/vue.2.6.11.js">
+			
+		</script>
+	</head>
+	<body>
+		<div class="container-fluid">
+			<div class="row" id="lbt">
+				<ul>
+					<li v-for="item in list.data">
+						<img :src="item.image">
+					</li>
+				</ul>
+			</div>
+			
+			<div class="row w-100" style="position: absolute; top: 440px;">
+				<div class="col-12 pt-3">
+					<div class="float-left"><img src="images/ia_100000053.png" style="width: 30px; height: 30px;"></div>
+					<div class="h4 font-weight-bold float-left ml-3">热门超英</div>
+				</div>
+				
+				<div class="col-12 mt-3" id="rmcy">
+					<ul>
+						<li v-for="item in list.data">
+							<img :src="item.cover" class="w-100">	
+							<p class="h4 font-weight-bold cutFont mt-2">{{item.name}}</p>
+							<img v-for="i of 4" src="images/ia_100000092.png" style="width: 20px; height: 20px;">
+							<img v-for="i of 4" src="images/ia_100000093.png" style="width: 20px; height: 20px;">
+							<span class="ml-3 pt-3">{{item.score}}</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+			
+			<div class="row bg-light" style="position: absolute; top: 870px; width: 100%; height: 10px;"></div>
+			
+			<div class="row w-100" style="position: absolute; top: 880px;">
+				<div class="col-12 pt-3">
+					<div class="float-left"><img src="images/ia_100000054.png" style="width: 30px; height: 30px;"></div>
+					<div class="h4 font-weight-bold float-left ml-3">热门预告</div>
+				</div>
+				
+				<div class="col-12 mt-3" id="rmyg">
+					<div class="float-left"><img src="images/zzx.png" alt=""></div>
+					<div class="float-left ml-3"><img src="images/mb.png" alt=""></div>
+				</div>
+			</div>
+			
+			<div class="row w-100" style="position: absolute; top: 1180px;">
+				<div class="col-12 pt-3">
+					<div class="float-left"><img src="images/ia_100000059.png" style="width: 30px; height: 30px;"></div>
+					<div class="h4 font-weight-bold float-left ml-3">猜你喜欢</div>
+				</div>
+				
+				<div class="col-12 mt-3" id="cnxh">
+					<ul>
+						
+					</ul>
+				</div>
+			</div>
+			
+			<div style="width: 10px; height: 1000px; position: absolute; top: 1800px;">
+				
+			</div>
+			
+			<div class="row w-100 bg-light pt-2" style="position: fixed; bottom: 0; height: 100px; border-top: 4px solid #bfbfbf;">
+				<div class="col-4 text-center">
+					<img src="images/ia_100000044.png" style="width: 60px; height: 60px;">
+					<p>首页</p>
+				</div>
+				<div class="col-4 text-center">
+					<img src="images/ia_100000045.png" style="width: 60px; height: 60px;">
+					<p>搜索</p>
+				</div>
+				<div class="col-4 text-center">
+					<img src="images/ia_100000046.png" style="width: 60px; height: 60px;">
+					<p>我的</p>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+				var vmx=new Vue({
+					el:"#lbt",
+					data:{
+						list:{},
+						index:-1,
+						width:document.body.offsetWidth
+					},
+					created(){
+						var that=this;
+						$.ajax({
+							type:"post",
+							url:"https://www.imovietrailer.com/superhero/index/carousel/list?qq=947876",
+							success:function(res){
+								that.list=res;
+							},
+							error:function(){
+								alert("获取失败，请稍后再试！");
+							}
+						});
+					},
+					updated() {
+						for(var i=0; i<$("#lbt>ul>li").length ; i++)
+						{
+							$("#lbt>ul>li").eq(i).css({
+								position:"absolute",
+								top:"0",
+								left:(i*this.width)+"px"
+							});
+						}
+						
+						$("#lbt>ul").prepend($("#lbt>ul>li").eq($("#lbt>ul>li").length-1).clone().css({
+							left:-1*this.width+"px"})
+						);
+						$("#lbt>ul").append($("#lbt>ul>li").eq(1).clone().css({
+							left:i*this.width+"px"})
+						);
+
+						var startX;
+						var moveX;
+						// 开启定时器
+						var that=this;
+						var timeId = setInterval(function () {
+							// 累加
+							that.index++;
+						
+							// 将 过渡开启 管你三七二十一 只要进来 就开启过渡 保证 过渡效果一直存在
+							$("#lbt>ul").css({transition:'all .3s'});
+						
+							// 修改 ul的位置
+							$("#lbt>ul").css({
+								position:"absolute",
+								left:that.index*that.width*-1+'px'
+							});
+							console.log(vmx.index);
+						},1000);
+							
+						$("#lbt>ul").on('webkitTransitionEnd',function () {
+							console.log('过渡结束');
+							//  如果 index 太大了 
+							if (that.index>5) {
+								that.index = 0;
+						
+								// 关闭过渡
+								$("#lbt>ul").css({transition:''});
+						
+								// 瞬间 修改一下 ul 的位置
+								$("#lbt>ul").css({
+									position:"absolute",
+									left:that.index*that.width*-1+'px'
+								});
+							}else if(that.index<0){
+								// 跳到倒数第二张
+								that.index= 5;
+						
+								// 关闭过渡
+								$("#lbt>ul").css({transition:''});
+													
+								// 瞬间 修改一下 ul 的位置
+								$("#lbt>ul").css({
+									position:"absolute",
+									left:that.index*that.width*-1+'px'
+								});
+							}
+						});
+						
+						// 触摸开始
+						$("#lbt>ul").on('touchstart',function (event) {
+							// 记录开始值
+							clearInterval(timeId);
+							startX = event.touches[0].clientX;
+						});
+						
+						// 触摸中
+						$("#lbt>ul").on('touchmove',function (event) {
+							// 计算移动的值
+							moveX = event.touches[0].clientX - startX;
+						
+							// 移动ul
+							$("#lbt>ul").css({transition:'all .3s'});
+							// 默认的移动值是 index*-1*width 
+							$("#lbt>ul").css({
+								position:"absolute",
+								left:moveX+that.index*that.width*-1+'px'
+							});
+						})
+						
+						// 触摸结束
+						$("#lbt>ul").on('touchend',function (event) {
+							var maxDistance = that.width/3;
+							if (Math.abs(moveX)>maxDistance) {
+								if (moveX>0) {
+									that.index--;
+								}else{
+									that.index++;
+								}
+								$("#lbt>ul").css({transition:'all .3s'});
+								$("#lbt>ul").css({
+									position:"absolute",
+									left:that.index*that.width*-1+'px'
+								});
+						
+							}else{
+								$("#lbt>ul").css({transition:'all .3s'});
+								$("#lbt>ul").css({
+									position:"absolute",
+									left:that.index*that.width*-1+'px'
+								});
+							}
+							
+							timeId = setInterval(function () {
+							// 累加
+							that.index++;
+												
+							// 将 过渡开启 管你三七二十一 只要进来 就开启过渡 保证 过渡效果一直存在
+							$("#lbt>ul").css({transition:'all .3s'});
+												
+							// 修改 ul的位置
+							$("#lbt>ul").css({
+								position:"absolute",
+								left:that.index*that.width*-1+'px'
+							});
+							},1000)
+						});
+					}
+				});
+		</script>
+		
+		
+		<!-- 热门超英 -->
+		<script type="text/javascript">
+			var vmxx=new Vue({
+				el:"#rmcy",
+				data:{
+					list:{}
+				},
+				created() {
+					var that=this;
+					$.ajax({
+						type:"post",
+						url:"https://www.imovietrailer.com/superhero/index/movie/hot?type=superhero&&qq=947876",
+						success:function(res){
+							that.list=res;
+							console.log(res.data);
+						},
+						error:function(){
+							alert("获取失败，请稍后再试！");
+						}
+					});
+				},
+				updated() {
+					for(var i=0 ; i<$("#rmcy>ul>li").length ; i++)
+					{
+						$("#rmcy>ul>li").eq(i).css({
+							position:"absolute",
+							top:"0",
+							left:(i*220)+"px",
+							width:"200px"
+						})
+					}
+				}
+			});
+		</script>
+		
+		<!-- 赞一下 -->
+		<script type="text/javascript">
+			$.ajax({
+				type:"post",
+				url:"https://www.imovietrailer.com/superhero/index/guessULike?qq=947876",
+				success:function(res){
+					var vm=new Vue({
+						el:"#cnxh",
+						data:{
+							res
+						}
+					});
+					var html="";
+					for(var i=0 ; i<vm.res.data.length ; i++)
+					{
+						html+=`<li>
+								<div class="float-left mt-5" style="width: 180px; height: 100px;">
+									<img src="${res.data[i].cover}" class="img-fluid">
+								</div>
+								
+								<div class="float-left ml-3 mt-5" style="width: 320px; height: 240px;">
+									<h3>${res.data[i].name}</h3>
+									<img src='images/ia_100000092.png' style='width:20px; height:20px;'>
+									<img src='images/ia_100000092.png' style='width:20px; height:20px;'>
+									<img src='images/ia_100000092.png' style='width:20px; height:20px;'>
+									<img src='images/ia_100000092.png' style='width:20px; height:20px;'>
+									<img src='images/ia_100000093.png' style='width:20px; height:20px;'>
+									<h4 class="mt-3" style="color:#808080">${res.data[i].basicInfo}</h4>
+									<h4 class="mt-3" style="color:#808080">${res.data[i].releaseDate}</h4>
+								</div>
+								
+								<div class="float-left ml-3 text-center mt-5 pt-5" style="width: 180px; height: 240px; border-left:4px dashed #d9d9d9;">
+									<img src="images/ia_100000094.png">
+									<h5>赞一下</h5>
+								</div>
+							</li>`;
+					}
+					$("#cnxh>ul").html(html);
+				},
+				error:function(){
+				    alert("获取失败，请稍后再试！");
+				}
+			});
+		</script>
+	</body>
+</html>
